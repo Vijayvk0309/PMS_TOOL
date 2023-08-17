@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Admin Panel";
+}
+@*<h1>@ViewData["Title"]</h1>
+
+*@
+
+<head>
+    <link rel="stylesheet" href="~/css/Admin.css" />
+</head>
+<body>
+
+   
+    <div class="background">
+        <div class="container-fluid">
+            <div class="panel pricing-table">
+
+                <div class="pricing-plan">
+                    <img src="/assets/User.png" alt="" class="pricing-img">
+                
+                    <a asp-area="" asp-controller="Admin" asp-action="CreateUser" class="pricing-button is-featured">Create User</a>
+                </div>
+
+                <div class="pricing-plan">
+                    <img src="/assets/Excell.png" alt="" class="pricing-img">
+                
+                    <a asp-area="" asp-controller="Main" asp-action="User" class="pricing-button is-featured">Excel Validation</a>
+                </div>
+
+                <div class="pricing-plan">
+                    <img src="/assets/edit.png" alt="" class="pricing-img">
+               
+                    <a asp-area="" asp-controller="Admin" asp-action="Table" class="pricing-button is-featured">Edit User</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+ 
+</body>

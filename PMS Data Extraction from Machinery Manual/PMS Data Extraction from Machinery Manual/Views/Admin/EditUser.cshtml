@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Admin Panel";
+}
+@model User
+<head>
+    <link rel="stylesheet" href="~/css//User.css" />
+</head>
+<body style="background-color:#F9F1FA">
+    <div class="wrapper">
+        <div class="product-img">
+            <img src="/assets/01.jpg" height="481" width="327">
+        </div>
+        <div class="product-info">
+            <div class="product-text">
+                <h1>Edit User</h1>
+               @* <form method="post" enctype="multipart/form-data" asp-controller="Admin" asp-action="EditUser">
+                    <fieldset>
+
+                    
+                        <input type="text" name="employeeid" value="" asp-for="@Model.EmployeeId" placeholder="EmployeeId" required>
+
+
+                        <input type="text" name="username" value="" asp-for="@Model.UserName" placeholder="UserName" required>
+
+
+                        <input type="password" name="password" value="" asp-for="@Model.Password" placeholder="Password" required>
+
+                      
+                    </fieldset>
+                    <button type="submit">Update</button>
+
+                </form>*@
+                <form method="post" enctype="multipart/form-data" asp-controller="Admin" asp-action="EditUser">
+                    <fieldset>
+                        <input type="text" name="employeeid" value="@Model.EmployeeId" placeholder="EmployeeId" required>
+                        <input type="text" name="username" value="@Model.UserName" placeholder="UserName" required>
+                        <input type="password" name="password" value="@Model.Password" placeholder="Password" required>
+                    </fieldset>
+                    <button type="submit">Update</button>
+                </form>
+            </div>
+        </div>
+</body>

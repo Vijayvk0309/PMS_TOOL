@@ -1,0 +1,125 @@
+﻿@{
+    ViewData["Title"] = "Admin Panel";
+}
+@*<h1>@ViewData["Title"]</h1>
+
+*@
+@*<head>
+    <link rel="stylesheet" href="~/css/Admin.css" />
+</head>
+<body style="background-color:#F9F1FA">
+    <div class="row">
+        <div class="col-sm-6">
+    <div class="container shadow p-5" style="width: 30rem; background-color:#F4F9F7;">
+
+        <div class=" text-uppercase text-center row pb-2 mb-3">
+            <h2>Create User</h2>
+            <a href="../Views/Home/CreateUser.cshtml">
+                    <p class="submit">
+                        <input type="submit" name="commit" value="Create">
+                    </p>
+                    </a>
+        </div>
+        </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="container shadow p-5" style="width: 30rem; background-color:#F4F9F7;">
+
+                <div class=" text-uppercase text-center row pb-2 mb-3">
+                    <h2>Edit User</h2>
+                    <p class="submit">
+                        <input type="submit" name="commit" value="Edit">
+                    </p>
+                </div>
+            </div>
+        </div>
+        </div>
+</body>*@
+@model User
+<head>
+    <link rel="stylesheet" href="~/css/User.css" />
+</head>
+<body>
+    @* <div class="container shadow p-5" style="width: 50rem; background-color:#F4F9F7;">
+
+    <div class=" text-uppercase text-center row pb-2 mb-3">
+    <h2>Create User</h2>
+    </div>
+    <form method="post" enctype="multipart/form-data" asp-controller="UserCreate" asp-action="Index">
+
+    <p><input type="text" name="employeeid" value="" asp-for="@Model.EmployeeId" placeholder="EmployeeId" required></p>
+    <p><input type="text" name="username" value="" asp-for="@Model.UserName" placeholder="UserName" required></p>
+    <p><input type="password" name="password" value="" asp-for="@Model.Password" placeholder="Password" required></p>
+    <p>
+    <select asp-for="@Model.Access" name="Access">
+    <option value="1">Select</option>
+    <option value="Admin">Admin</option>
+    <option value="NormalUser">NormalUser</option>
+
+    </select>
+    </p>
+    <button type="submit" class="btn btn-lg btn-primary p-2"> Sign In </button>
+
+    </form>
+    </div>*@
+  @*  <div class="row">
+        <div class="col-md-6">
+            <form method="post" enctype="multipart/form-data" asp-controller="Admin" asp-action="Index">
+                <h1> Create User</h1>
+
+                <fieldset>
+
+                
+                    <input type="text" name="employeeid" value="" asp-for="@Model.EmployeeId" placeholder="EmployeeId" required>
+
+             
+                    <input type="text" name="username" value="" asp-for="@Model.UserName" placeholder="UserName" required>
+
+              
+                    <input type="password" name="password" value="" asp-for="@Model.Password" placeholder="Password" required>
+           
+                    <select id="job" asp-for="@Model.Access" name="Access">
+                        <option value="Admin">Admin</option>
+                        <option value="User">User</option>
+
+                    </select>
+                </fieldset>
+                <button type="submit">Sign Up</button>
+
+            </form>
+        </div>
+        <div class="col-md-6">
+            <img src="/assets/01.jpg" class="userimage" />
+        </div>
+    </div>*@
+    <div class="wrapper">
+        <div class="product-img">
+            <img src="/assets/01.jpg" height="481" width="327">
+        </div>
+        <div class="product-info">
+            <div class="product-text">
+                <h1>Create User</h1>
+                <form method="post" enctype="multipart/form-data" asp-controller="Admin" asp-action="Index">
+                    <fieldset>
+
+
+                        <input type="text" name="employeeid" value="" asp-for="@Model.EmployeeId" placeholder="EmployeeId" required>
+
+
+                        <input type="text" name="username" value="" asp-for="@Model.UserName" placeholder="UserName" required>
+
+
+                        <input type="password" name="password" value="" asp-for="@Model.Password" placeholder="Password" required>
+
+                        <select id="job" asp-for="@Model.Access" name="Access">
+                            <option value="Admin">Admin</option>
+                            <option value="User">User</option>
+
+                        </select>
+                    </fieldset>
+                    <button type="submit">Sign Up</button>
+
+                </form>
+        </div>
+    </div>
+</body>

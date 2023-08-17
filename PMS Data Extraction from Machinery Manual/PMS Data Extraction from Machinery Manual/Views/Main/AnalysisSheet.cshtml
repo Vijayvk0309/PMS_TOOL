@@ -1,0 +1,260 @@
+﻿@{
+    ViewData["Title"] = "Admin Panel";
+}
+
+@model List<ExcelValidate>
+<head>
+    <link rel="stylesheet" href="~/css/AnalysisSheet.css" />
+</head>
+<style>
+    .highlight-row {
+        background-color: #ffcccc; /* Set your desired background color for the highlighted rows */
+    }
+</style>
+
+
+<body>
+
+    @{
+        ViewData["Title"] = "Cascading Dropdowns";
+    }
+@*
+    <div class="wrapper">*@
+      
+       @* <div class="product-img">*@
+          @*  <img src="/assets/01.jpg" height="481" width="327">*@                         
+                   
+         @*   <div class="form-group">*@
+               
+              
+        @*    </div>*@
+
+           @* <div class="form-group">*@
+              
+               
+       @*     </div>
+        </div>*@
+      @*  <div class="product-info">
+            <div class="product-text">
+            
+               
+            </div>
+
+        </div>*@
+   
+    <div class="wrapper">
+        <h2 style="text-align:center">Data Processing Stage</h2>
+    <div class="row">
+        <div class="col-4"> @Html.DropDownList("ClientName", (SelectList)ViewBag.ClientNames, "Select a ClientName") </div>
+        <div class="col-4">
+
+            <select id="VesselName">
+                <option>Select a VesselName</option>
+            </select>
+        </div>
+        <div class="col-4">
+            <select id="EquipmentName">
+                <option>Select a EquipmentName</option>
+            </select>
+        </div>
+        </div>
+
+
+        <table id="equipmentDetailsTable">
+          
+            <tbody>
+             
+            </tbody>
+        </table>  
+    </div>
+    </body>
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+          
+            $("#ClientName").on("change", function () {
+                var ClientName = $(this).val();
+                $.getJSON(`/Main/GetVesselNames?ClientName=${ClientName}`, function (data) {
+                    var options = "<option value=''>Select a VesselName</option>";
+                    $.each(data, function (index, item) {
+                        options += `<option value='${item}'>${item}</option>`;
+                    });
+                    $("#VesselName").html(options);
+                    $("#EquipmentName").html("<option>Select a EquipmentName</option>");
+                });
+            });
+          
+            $("#VesselName").on("change", function () {
+                var ClientName = $("#ClientName").val();
+                var VesselName = $(this).val();
+                $.getJSON(`/Main/GetEquipmentNames?ClientName=${ClientName}&VesselName=${VesselName}`, function (data) {
+                    var options = "<option value=''>Select a EquipmentName</option>";
+                    $.each(data, function (index, item) {
+                        options += `<option value='${item}'>${item}</option>`;
+                    });
+                    $("#EquipmentName").html(options);
+                });
+            });
+          
+            $("#EquipmentName").on("change", function () {
+                var ClientName = $("#ClientName").val();
+                var VesselName = $("#VesselName").val();
+                var EquipmentName = $(this).val();
+
+                // Make an AJAX request to fetch data and update the table
+                $.getJSON(`/Main/GetAllDetails?ClientName=${ClientName}&VesselName=${VesselName}&EquipmentName=${EquipmentName}`, function (data) {
+                    // Assuming `data` is an array of objects with the same properties as your table headers
+                    var tableRows = `
+                 <tr>
+                    <th>Manual Name</th>
+                    <th>Total Pages</th>
+                              <th>Maker</th>
+                            <th>Model/Type</th>
+                    <th>SparePageNo</th>
+                    <th>JobPageNo</th>
+                  
+                    <th>Technical Data</th>
+                    <th>SparePageView</th>
+                    <th>JobPageView</th>
+                    <th>TotalPageView</th>
+                  </tr>
+                  `;
+                    data.forEach(function (item) {
+                        console.log(item);
+                        tableRows += `
+                            <tr>
+                                <td>${item.manualName}</td>
+                                <td>${item.totalPages}</td>
+                                <td>${item.maker}</td>
+                                <td>${item.modelType}</td>
+                                <td>${item.sparePageNo}</td>
+                                <td>${item.jobPageNo}</td>
+                                <td>${item.technicalData}</td>
+                                <td><input type="button" class="pdfview"  onclick="GetSparePageReport('${item.filePath}','${item.sparePageNo}', '${item.outputPath}','${item.manualName}')" value="View"></td>
+                                                       <td><input type="button" class="pdfview" onclick="GetJobPageReport('${item.filePath}','${item.jobPageNo}', '${item.outputPath}')" value="View"></td>
+                                                <td><input type="button" class="pdfview" onclick="GetClientReport('${item.filePath}')" value="View"></td>
+          
+                            </tr>`;
+                    });
+
+                    // Update the table body with the new data
+                    $("#equipmentDetailsTable tbody").html(tableRows);
+                });
+             
+            });
+          
+        });
+        function GetSparePageReport(filePath, sparePageNo, outputPath, manualName) {
+            debugger;
+            var url = 'https://localhost:7106/Main/GetSparePagereport?filePath=' + encodeURIComponent(filePath) + '&SparePageNo=' + encodeURIComponent(sparePageNo) + '&OutputPath=' + encodeURIComponent(outputPath) + '&ManualName=' + encodeURIComponent(manualName);
+
+            window.open(url, '_blank');
+        }
+        function GetClientReport(filePath) {
+            var url = 'https://localhost:7106/Main/GetReport?filePath=' + encodeURIComponent(filePath);
+
+            window.open(url, '_blank');
+        }
+
+        function GetJobPageReport(filePath, jobPageNo, outputPath) {
+            var url = 'https://localhost:7106/Main/GetJobPagereport?filePath=' + encodeURIComponent(filePath) + '&JobPageNo=' + encodeURIComponent(jobPageNo) + '&OutputPath=' + encodeURIComponent(outputPath);
+
+            window.open(url, '_blank');
+        }
+    </script>
+}
+@*@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#MainCategoryId').change(function () {
+                var parentId = $(this).val();
+                $.get('/Category/GetSubcategories', { parentId: parentId }, function (data) {
+                    var subcategoryDropdown = $('#SubcategoryId');
+                    subcategoryDropdown.empty();
+                    subcategoryDropdown.append($('<option></option>').val('').text('Select a subcategory'));
+                    $.each(data, function (index, subcategory) {
+                        subcategoryDropdown.append($('<option></option>').val(subcategory.id).text(subcategory.name));
+                    });
+                });
+            });
+        });
+    </script>
+}*@
+@*@model List<Category>
+
+<select id="SubcategoryId" name="SubcategoryId" class="form-control">
+    <option value="">Select a subcategory</option>
+    @foreach (var subcategory in Model)
+    {
+        <option value="@subcategory.Id">@subcategory.Name</option>
+    }
+</select>*@
+@*CREATE PROCEDURE GetSubcategories
+@ParentId INT
+AS
+BEGIN
+    SELECT Id, Name
+    FROM Categories
+    WHERE ParentCategoryId = @ParentId;
+END;*@
+
+@*public class CategoryController : Controller
+{
+    private readonly ICategoryRepository _categoryRepository;
+
+    public CategoryController(ICategoryRepository categoryRepository)
+    {
+        _categoryRepository = categoryRepository;
+    }
+
+    [HttpGet]
+    public IActionResult Index()
+    {
+        // Populate the main categories dropdown
+        var categories = _categoryRepository.GetSubcategoriesAsync(null).Result;
+        ViewBag.Categories = new SelectList(categories, "Id", "Name");
+
+        return View();
+    }
+
+    [HttpGet]
+    public IActionResult GetSubcategories(int? parentId)
+    {
+        var subcategories = _categoryRepository.GetSubcategoriesAsync(parentId).Result;
+        return Json(subcategories);
+    }
+}
+
+    public interface ICategoryRepository
+{
+    Task<List<Category>> GetSubcategoriesAsync(int? parentId);
+}*@
+
+@*public class CategoryRepository : ICategoryRepository
+{
+    private readonly ApplicationDbContext _context;
+
+    public CategoryRepository(ApplicationDbContext context)
+    {
+        _context = context;
+    }
+
+    public async Task<List<Category>> GetSubcategoriesAsync(int? parentId)
+    {
+        return await _context.GetSubcategoriesAsync(parentId);
+    }
+}*@
+@*public class ApplicationDbContext : DbContext
+{
+    public DbSet<Category> Categories { get; set; }
+
+    public async Task<List<Category>> GetSubcategoriesAsync(int? parentId)
+    {
+        return await Categories
+            .Where(c => c.ParentCategoryId == parentId)
+            .ToListAsync();
+    }
+
+    // ... other DbSet declarations and configuration ...
+}*@

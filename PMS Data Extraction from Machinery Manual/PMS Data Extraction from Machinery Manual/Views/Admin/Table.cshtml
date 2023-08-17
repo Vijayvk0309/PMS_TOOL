@@ -1,0 +1,112 @@
+﻿@{
+    ViewData["Title"] = "Table Panel";
+}
+@*<h1>@ViewData["Title"]</h1>
+
+*@
+
+@model List<PMS_Data_Extraction_from_Machinery_Manual.Models.User>
+<style>
+    #UserDatatable {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #UserDatatable td, #UserDatatable th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+    #UserDatatable tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+    #UserDatatable tr:hover {
+            background-color: #ddd;
+        }
+
+    #UserDatatable th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #188ca7;
+            color: white;
+        }
+
+    #UserDatatable th.sorting::before {
+                color: #fff;
+            }
+
+    .page-item.active .page-link {
+        z-index: 3;
+        color: #fff;
+        background-color: #188ca7;
+        border-color: #188ca7;
+        border-radius:50px;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        padding: 5px 10px;
+        margin: 2px;
+        cursor: pointer;
+    }
+
+    .bi-pencil-square{
+        color: #188ca7;
+       margin-left:20px;
+       font-size:22px;
+    }
+
+</style>
+<link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+<body>
+   @* <div class="card" style="width:1200px;height:500px;">*@
+       <h2>User Details</h2>
+        <div class="container-fluid">
+            <br/>
+        <table id="UserDatatable" class="table table-striped table-bordered" style="width:100%">
+      @*  <table class="table table-striped table-bordered dt-responsive nowrap" width="100px" cellspacing="0">*@
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Employee ID</th>
+                    <th>UserName</th>
+                    <th>Password</th>
+                    <th>Access</th>
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.EmployeeId</td>
+                            <td>@item.UserName</td>
+                            <td>@item.Password </td>
+                            <td> @item.Access</td>
+                           @* <td>
+                            <a asp-controller="Admin" asp-action="EditUser" asp-route-id="@item.Id" class="btn btn-sm btn-primary">
+                                <i class="bi bi-pencil-square"></i>Edit
+                            </a>
+                           
+                            </td>*@
+                            <td><a asp-controller="Admin" asp-action="EditUser" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a></td>
+                        </tr>
+                    
+                }
+            </tbody>
+        </table>
+        </div>
+  @*  </div>*@
+    @section Scripts
+        {
+        <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+        <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+        <script src="~/js/UserDatatable.js"></script>
+    }
+</body>

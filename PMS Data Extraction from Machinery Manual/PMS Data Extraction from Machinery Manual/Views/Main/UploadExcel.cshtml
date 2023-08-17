@@ -1,0 +1,250 @@
+﻿@{
+    ViewData["Title"] = "UploadExcel";
+}
+@*<h1>@ViewData["Title"]</h1>
+
+*@
+@model List<PMS_Data_Extraction_from_Machinery_Manual.Models.ExcelValidate>
+<head>
+@*    <link rel="stylesheet" href="~/css/Admin.css" />*@
+</head>
+<style>
+    #ValidationTable {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        overflow:scroll;
+    }
+
+    #ValidationTable td, #ValidationTable th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+    #ValidationTable tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+    #ValidationTable tr:hover {
+            background-color: #ddd;
+        }
+
+    #ValidationTable th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #188ca7;
+            color: white;
+        }
+
+    #ValidationTable th.sorting::before {
+                color: #fff;
+            }
+
+    .page-item.active .page-link {
+        z-index: 3;
+        color: #fff;
+        background-color: #188ca7;
+        border-color: #188ca7;
+        border-radius: 50px;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        padding: 5px 10px;
+        margin: 2px;
+        cursor: pointer;
+    }
+
+    .bi-pencil-square {
+        color: #188ca7;
+        margin-left: 20px;
+        font-size: 22px;
+    }
+    .container{
+        max-width:1270px;
+    }
+</style>
+<link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+<body>
+    <div class="container">
+    
+        <h2>Upload Excel Validation Details</h2>
+        @if (Model.Count > 0)
+        {
+            <div class="table-responsive">
+                <table id="ValidationTable" class="table table-striped table-bordered" style="width:100%">
+                <tr>
+                    <th>ClientName</th>
+                    <th>VesselName</th>
+                    <th>ManualPath</th>
+                    <th>ManualName</th>
+                    <th>TotalPages</th>
+                    <th>EquipmentName</th>
+                    <th>Maker</th>
+                    <th>ModelType</th>
+                    <th>NoOfUnit</th>
+                    <th>SparePageNo</th>
+                    <th>JobPageNo</th>
+                    <th>TechnicalData</th>
+                    <th>Remarks</th>
+
+                </tr>
+                <tbody>
+                    @foreach (var person in Model)
+                    {
+                        <tr>
+                            <td>
+
+                                @if (!string.IsNullOrEmpty(person.ClientNameErrorMessage))
+                                {
+                                    <span style="color: red;">@person.ClientNameErrorMessage</span>
+                                }
+                                else
+                                {
+                                    @person.ClientName
+                                }
+                            </td>
+                            <td>
+
+                                @if (!string.IsNullOrEmpty(person.VesselNameErrorMessage))
+                                {
+                                    <span style="color: red;">@person.VesselNameErrorMessage</span>
+                                }
+                                else
+                                {
+                                    @person.VesselName
+                                }
+                            </td>
+                            <td>
+
+                                @if (!string.IsNullOrEmpty(person.ManualPathErrorMessage))
+                                {
+                                    <span style="color: red;">@person.ManualPathErrorMessage</span>
+                                }
+                                else
+                                {
+                                    @person.ManualPath
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(person.ManualNameErrorMessage))
+                                {
+                                    <span style="color: red;">@person.ManualNameErrorMessage</span>
+                                }
+                                else
+                                {
+                                    @person.ManualName
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(person.TotalPagesErrorMessage))
+                                {
+                                    <span style="color: red;">@person.TotalPagesErrorMessage</span>
+                                }
+                                else
+                                {
+                                    @person.TotalPages
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(person.EquipmentNameErrorMessage))
+                                {
+                                    <span style="color: red;">@person.EquipmentNameErrorMessage</span>
+                                }
+                                else
+                                {
+                                    @person.EquipmentName
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(person.MakerErrorMessage))
+                                {
+                                    <span style="color: red;">@person.MakerErrorMessage</span>
+                                }
+                                else
+                                {
+                                    @person.Maker
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(person.ModelTypeErrorMessage))
+                                {
+                                    <span style="color: red;">@person.ModelTypeErrorMessage</span>
+                                }
+                                else
+                                {
+                                    @person.ModelType
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(person.NoOfUnitErrorMessage))
+                                {
+                                    <span style="color: red;">@person.NoOfUnitErrorMessage</span>
+                                }
+                                else
+                                {
+                                    @person.NoOfUnit
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(person.SparePageNoErrorMessage))
+                                {
+                                    <span style="color: red;">@person.SparePageNoErrorMessage</span>
+                                }
+                                else
+                                {
+                                    @person.SparePageNo
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(person.JobPageNoErrorMessage))
+                                {
+                                    <span style="color: red;">@person.JobPageNoErrorMessage</span>
+                                }
+                                else
+                                {
+                                    @person.JobPageNo
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(person.TechnicalDataErrorMessage))
+                                {
+                                    <span style="color: red;">@person.TechnicalDataErrorMessage</span>
+                                }
+                                else
+                                {
+                                    @person.TechnicalData
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(person.RemarksErrorMessage))
+                                {
+                                    <span style="color: red;">@person.RemarksErrorMessage</span>
+                                }
+                                else
+                                {
+                                    @person.Remarks
+                                }
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            </div>
+        }
+        else
+        {
+            <p>No data to display.</p>
+        }
+      
+    </div>
+    @section Scripts
+        {
+        <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+        <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+        <script src="~/js/ValidationTable.js"></script>
+    }
+</body>
+

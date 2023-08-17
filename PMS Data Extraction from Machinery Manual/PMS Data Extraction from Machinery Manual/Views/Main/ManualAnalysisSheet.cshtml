@@ -1,0 +1,92 @@
+﻿@{
+    ViewData["Title"] = "Admin Panel";
+}
+
+@model List<ExcelValidate>
+<head>
+    <link rel="stylesheet" href="~/css/Admin.css" />
+</head>
+<style>
+    .highlight-row {
+        background-color: #ffcccc; /* Set your desired background color for the highlighted rows */
+    }
+</style>
+
+
+<body>
+  
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <div class="container">
+        <h2>Upload Excel</h2>
+            <table id="customers">
+                <tr>
+                    <th>ClientName</th>
+                    <th>VesselName</th>
+                    <th>TotalPages</th>
+                    <th>EquipmentName</th>
+                    <th>SparePageNo</th>
+                    <th>JobPageNo</th>
+                    <th>SparePageView</th>
+                    <th>JobPageView</th>
+                    <th>TotalPagesView</th>
+                </tr>
+                <tbody>
+                    @foreach (var item in Model)
+                    {                    
+                        <tr>
+
+                            <td>@item.ClientName</td>
+                            <td>@item.VesselName</td>
+                            <td>@item.TotalPages</td>
+                            <td>@item.EquipmentName </td>
+                            <td>@item.SparePageNo</td>
+                            <td>@item.JobPageNo</td>
+                            <td>
+                            <input type="button" onclick="GetSparePageReport('@item.FilePath','@item.SparePageNo','@item.OutputPath','@item.ManualName')" value="Display">
+                            </td>
+                            <td>
+                            <input type="button" onclick="GetJobPageReport('@item.FilePath','@item.JobPageNo','@item.OutputPath')" value="Display">
+                            </td>
+                            <td>
+                            <input type="button" onclick="GetClientReport('@item.FilePath')" value="Display">                 
+                            </td>
+                        </tr>
+                        
+                    }
+                </tbody>
+            </table>
+    </div>
+   
+    <script type="text/javascript">
+        function GetClientReport(FilePath) {
+            var url = 'https://localhost:7106/Main/GetReport?filePath=' + encodeURIComponent(FilePath);
+         
+            window.open(url, '_blank');
+        }
+        function GetSparePageReport(FilePath, SparePageNo, OutputPath, ManualName) {
+            var url = 'https://localhost:7106/Main/GetSparePagereport?filePath=' + encodeURIComponent(FilePath) + '&SparePageNo=' + encodeURIComponent(SparePageNo) + '&OutputPath=' + encodeURIComponent(OutputPath) + '&ManualName=' + encodeURIComponent(ManualName);
+
+            window.open(url, '_blank');
+        }
+        function GetJobPageReport(FilePath, JobPageNo, OutputPath) {
+            var url = 'https://localhost:7106/Main/GetJobPagereport?filePath=' + encodeURIComponent(FilePath) + '&JobPageNo=' + encodeURIComponent(JobPageNo) + '&OutputPath=' + encodeURIComponent(OutputPath);
+
+            window.open(url, '_blank');
+        }
+    </script>
+   
+
+
+   @* <script>
+        function openPdfInNewTab() {
+            window.open('@Url.Action("OpenPdfInNewTab", "Pdf")', '_blank');
+        }
+    </script>*@
+    </body>
+

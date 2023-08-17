@@ -1,0 +1,430 @@
+/*body {
+    font: 13px/20px "Lucida Grande", Tahoma, Verdana, sans-serif;
+    color: #404040;
+    background: #E1EBEE;
+}
+
+.logo {
+    margin-top: 100px;
+}
+
+.login {
+    position: relative;
+    margin: 30px auto;
+    padding: 20px 20px 20px;
+    margin-top: 100px;
+    width: 310px;
+    background: white;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+
+    .login:before {
+        content: '';
+        position: absolute;
+        top: -5px;
+        right: -8px;
+        bottom: -8px;
+        left: -8px;
+        z-index: -1;
+        background: rgba(0, 0, 0, 0.08);
+        border-radius: 4px;
+    }
+
+    .login h1 {
+        margin: -20px -20px 21px;
+        line-height: 40px;
+        font-size: 15px;
+        font-weight: bold;
+        color: #555;
+        text-align: center;
+        text-shadow: 0 1px white;
+        background: #f3f3f3;
+        border-bottom: 1px solid #cfcfcf;
+        border-radius: 3px 3px 0 0;
+        background-image: -webkit-linear-gradient(top, whiteffd, #eef2f5);
+        background-image: -moz-linear-gradient(top, whiteffd, #eef2f5);
+        background-image: -o-linear-gradient(top, whiteffd, #eef2f5);
+        background-image: linear-gradient(to bottom, whiteffd, #eef2f5);
+        -webkit-box-shadow: 0 1px whitesmoke;
+        box-shadow: 0 1px whitesmoke;
+    }
+
+    .login p {
+        margin: 10px 0 0;
+    }
+
+        .login p:first-child {
+            margin-top: 0;
+        }
+
+    .login input[type=text], .login input[type=password] {
+        width: 278px;
+    }
+
+    .login p.remember_me {
+        float: left;
+        line-height: 31px;
+    }
+
+        .login p.remember_me label {
+            font-size: 12px;
+            color: #777;
+            cursor: pointer;
+        }
+
+        .login p.remember_me input {
+            position: relative;
+            bottom: 1px;
+            margin-right: 4px;
+            vertical-align: middle;
+        }
+
+    .login p.submit {
+        text-align: right;
+    }
+
+.login-help {
+    margin: 20px 0;
+    font-size: 11px;
+    color: white;
+    text-align: center;
+    text-shadow: 0 1px #2a85a1;
+}
+
+    .login-help a {
+        color: #cce7fa;
+        text-decoration: none;
+    }
+
+        .login-help a:hover {
+            text-decoration: underline;
+        }
+
+:-moz-placeholder {
+    color: #c9c9c9 !important;
+    font-size: 13px;
+}
+
+::-webkit-input-placeholder {
+    color: #ccc;
+    font-size: 13px;
+}
+
+select {
+    font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;
+    font-size: 14px;
+    margin: 5px;
+    padding: 0 10px;
+    width: 200px;
+    height: 34px;
+    color: #404040;
+    background: white;
+    border: 1px solid;
+    border-color: #c4c4c4 #d1d1d1 #d4d4d4;
+    border-radius: 2px;
+    outline: 5px solid #eff4f7;
+    -moz-outline-radius: 3px;
+    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+input {
+    font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;
+    font-size: 14px;
+}
+
+    input[type=text], input[type=password] {
+        margin: 5px;
+        padding: 0 10px;
+        width: 200px;
+        height: 34px;
+        color: #404040;
+        background: white;
+        border: 1px solid;
+        border-color: #c4c4c4 #d1d1d1 #d4d4d4;
+        border-radius: 2px;
+        outline: 5px solid #eff4f7;
+        -moz-outline-radius: 3px;
+        -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
+    }
+
+        input[type=text]:focus, input[type=password]:focus {
+            border-color: #7dc9e2;
+            outline-color: #dceefc;
+            outline-offset: 0;
+        }
+
+    input[type=submit] {
+        padding: 0 8px;
+        height: 29px;
+        font-size: 12px;
+        font-weight: bold;
+        color: #527881;
+        text-shadow: 0 1px #e3f1f1;
+        background: #cde5ef;
+        border: 1px solid;
+        margin-right: 100px;
+        width: 50px;
+        border-color: #b4ccce #b3c0c8 #9eb9c2;
+        border-radius: 16px;
+        outline: 0;
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+        background-image: -webkit-linear-gradient(top, #edf5f8, #cde5ef);
+        background-image: -moz-linear-gradient(top, #edf5f8, #cde5ef);
+        background-image: -o-linear-gradient(top, #edf5f8, #cde5ef);
+        background-image: linear-gradient(to bottom, #edf5f8, #cde5ef);
+        -webkit-box-shadow: inset 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.15);
+        box-shadow: inset 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.15);
+    }
+
+        input[type=submit]:active {
+            background: #cde5ef;
+            border-color: #9eb9c2 #b3c0c8 #b4ccce;
+            -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+            box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+        }
+
+.lt-ie9 input[type=text], .lt-ie9 input[type=password] {
+    line-height: 34px;
+}
+
+img {
+    width: 100%;
+}
+.loginheading {
+    color: #48aaff;
+}
+.login {
+    height: 900px;
+    width: 100%;
+    background: radial-gradient(#653d84, #332042);
+    position: relative;
+}
+
+.login_box {
+    width: 1050px;
+    height: 450px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 1px 4px 22px -8px #0004;
+    display: flex;
+    overflow: hidden;
+}
+
+    .login_box .left {
+        width: 41%;
+        height: 100%;
+        padding: 25px 25px;
+    }
+
+    .login_box .right {
+        width: 59%;
+        height: 100%
+    }
+
+.left .top_link a {
+    color: #452A5A;
+    font-weight: 400;
+}
+
+.left .top_link {
+    height: 20px
+}
+
+.left .contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    height: 100%;
+    width: 73%;
+    margin: auto;
+}
+
+.left h3 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.left input {
+    border: none;
+    width: 80%;
+    margin: 15px 0px;
+    border-bottom: 1px solid #5d9beb;
+    padding: 7px 9px;
+    width: 100%;
+    overflow: hidden;
+    background: transparent;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.left {
+    background: linear-gradient(-45deg, #dcd7e0, #fff);
+}
+
+.submit {
+    border: none;
+    padding: 10px 40px;
+    border-radius: 8px;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    background: #48aaff;
+    color: #fff;
+    font-weight: bold;
+    -webkit-box-shadow: 0px 9px 15px -11px rgba(88,54,114,1);
+    -moz-box-shadow: 0px 9px 15px -11px rgba(88,54,114,1);
+    box-shadow: 0px 9px 15px -11px rgba(88,54,114,1);
+}
+
+
+
+.right {
+    background: linear-gradient(212.38deg, rgba(183, 233, 247) 0%, rgba(175, 70, 189, 0.71) 100%),url(https://static.seattletimes.com/wp-content/uploads/2019/01/web-typing-ergonomics-1020x680.jpg);
+    color: #fff;
+    position: relative;
+}
+
+    .right .right-text {
+        height: 100%;
+        position: relative;
+        transform: translate(0%, 45%);
+    }
+
+.right-text h2 {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 500;
+}
+
+.right-text h5 {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 19px;
+    font-weight: 400;
+}
+
+.right .right-inductor {
+    position: absolute;
+    width: 70px;
+    height: 7px;
+    background: #fff0;
+    left: 50%;
+    bottom: 70px;
+    transform: translate(-50%, 0%);
+}
+
+.top_link img {
+    width: 28px;
+    padding-right: 7px;
+    margin-top: -3px;
+}
+
+.alert {
+    color: red;
+}
+
+.username {
+    color: red;
+    font-weight: 300;
+   margin-top:30px;
+}*/
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: white;
+    background: url(/assets/05.jpg);
+    background-size: cover;
+}
+h2 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 10px;
+    color: yellow;
+    margin-top: -40px;
+    font-family:sans-serif;
+}
+.logo {
+    margin-top:-90px;
+    margin-left:70px;
+    width:180px;
+    height:180px;
+}
+#signin-form-container {
+    background-color: rgba(211, 211, 211, 0.295);
+    padding: 40px;
+    width: 400px;
+    margin: auto;
+    margin-top: 50px;
+    height: 430px;
+    margin-left:700px;
+    border-radius:30px;
+}
+
+form {
+    text-align: center;
+    width: 240px;
+    margin-top:40px;
+}
+
+
+.alert {
+    color: red;
+}
+
+.username {
+    color: red;
+    font-weight: 300;
+    margin-top: 30px;
+}
+.submit {
+    border: none;
+    padding: 10px 40px;
+    border-radius: 8px;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    background: #48aaff;
+    color: #fff;
+    font-weight: bold;
+    margin-left: 90px;
+    -webkit-box-shadow: 0px 9px 15px -11px rgba(88,54,114,1);
+    -moz-box-shadow: 0px 9px 15px -11px rgba(88,54,114,1);
+    box-shadow: 0px 9px 15px -11px rgba(88,54,114,1);
+}
+
+input {
+    width: 240px;
+    text-align: center;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid silver;
+    font-size: 16px;
+    font-weight: 200px;
+    padding: 10px 0;
+    outline: none;
+    color: white;
+    margin-left:40px;
+}
+
+    input[type=password] {
+        margin-top: 30px;
+    }
+
+    input::placeholder {
+        color: rgb(209, 205, 205,0.6);
+    }
+

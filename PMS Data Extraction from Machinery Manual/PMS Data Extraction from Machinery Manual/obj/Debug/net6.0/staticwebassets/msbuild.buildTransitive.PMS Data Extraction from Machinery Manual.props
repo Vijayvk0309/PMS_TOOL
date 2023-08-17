@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\PMS Data Extraction from Machinery Manual.props" />
+</Project>
